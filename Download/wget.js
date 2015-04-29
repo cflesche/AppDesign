@@ -26,7 +26,7 @@ catch( e )
 var download = function( url, dest, cb ) {
     console.log( "Download!" );
     var file = fs.createWriteStream( dest );
-
+try{
     var request = http.get( url, function( response ) {
         console.log( "get callback!" );
         response.pipe( file );
@@ -45,7 +45,11 @@ var download = function( url, dest, cb ) {
             cb( err.message );
     });
     console.log( "called request.on" );
-};
+  } 
+catch(e)
+{
+  console.og("Error in URL");
+}
 
 for(var i = 0; i < lines1.length;i+=2){
   console.log(lines1[i]);
