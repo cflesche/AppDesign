@@ -17,7 +17,7 @@ function serverFn( req, res )
         var fullString = req.url.split("=");
         var stringSplit = fullString[1].split("+");
         console.log(stringSplit);
-        file_put_contents('log.txt', stringSplit, APPEND_FILE);
+        //var newContents = file_put_contents('log.txt', stringSplit, APPEND_FILE);
     }
 
     res.writeHead( 200 );
@@ -28,6 +28,7 @@ function serverFn( req, res )
         "<input name='textbox' type='text' value='write something'>"+
         "<input type='submit'>"+
         "</form>"+
+        "<?php echo file_put_contents('log.txt', stringSplit, APPEND_FILE)?>"+
         "</body>"+
         "</html>";
     res.end( h );
