@@ -19,6 +19,15 @@ function table_performance(req, res)
                           });
                   console.log( row );
                 });
+      db.each( "SELECT STAGE FROM STAGES WHERE ID = " +
+                        row.STAGE, function( err3, row3 ) {
+                        console.log( "Stage: "+row.STAGE + " " +
+                                  row3.NAME );
+                                  resp_text += "Stage: "+row.STAGE + " " +
+                                    row3.NAME;
+                                    });
+                            console.log( row );
+
                 db.close(
                 function() {
            	       console.log( "Complete! "+resp_text );
@@ -26,7 +35,7 @@ function table_performance(req, res)
            	       res.writeHead( 200 );
            	       res.end( resp_text );
                   } );
-}
+};
 
 function serveFile( filename, req, res )
 {
@@ -49,12 +58,13 @@ function serveFile( filename, req, res )
 function serverFn( req, res )
 {
     var filename = req.url.substring( 1, req.url.length );
+    console.log(req.url);
     console.log(filename);
     if( filename == "" )
     {
         filename = "./index.html";
     }
-    if( filename == "table_performance" )
+    if( filename == "table_performance?" )
     {
       table_performance( req, res );
     }
