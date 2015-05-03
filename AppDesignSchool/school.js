@@ -2,6 +2,46 @@ var fs = require( "fs" );
 var http = require( "http" );
 var sqlite = require( "sqlite3" );
 
+function formInputParser( url )
+{
+    inputs = {}
+    var form_text = url.split( "?" )[1];
+    var form_inputs = form_text.split( "&" );
+    for( var i = 0; i < form_inputs.length; i++ ) {
+        var inp = form_inputs[i].split( "=" );
+        inputs[ inp[0] ] = inp[1];
+    }
+    console.log( inputs );
+    return inputs;
+}
+
+function addEnrollment( req, res )
+{
+    var db = new sqlite.Database( "school.sqlite" );
+    console.log( req.url );
+    formInputParser( req.url );
+    var sql_cmd = "INSERT INTO ENROLLMENTS ('CLASSID','STUDENTID') VALUES ('"+
+         inputs.classid+"' , '"+
+         inputs.studentid+"')";
+    db.run( sql_cmd );
+    db.close();
+    res.writeHead( 200 );
+    res.end( "<html><body>Added!!!</body></html>" );
+}
+
+function addStudent( req, res )
+{
+    var db = new sqlite.Database( "school.sqlite" );
+    formInputParser( req.url );
+    var sql_cmd = "INSERT INTO STUDENTS ('NAME','YEAR') VALUES ('"+
+         inputs.name+"' , '"+
+         inputs.year+"')";
+    db.run( sql_cmd );
+    db.close();
+    res.writeHead( 200 );
+    res.end( "<html><body>Added!!!</body></html>" );
+}
+
 function listAssignments( req, res )
 {
     var db = new sqlite.Database( "school.sqlite" );
@@ -163,6 +203,14 @@ function serverFn( req, res )
     else if( filename.substring( 0, 16 ) == "list_assignments" )
     {
         listAssignments( req, res );
+    }
+    else if( filename.substring( 0, 11 ) == "add_student" )
+    {
+        addStudent( req, res );
+    }
+    else if( filename.substring( 0, 14 ) == "add_enrollment" )
+    {
+        addEnrollment( req, res );
     }
     else
     {
