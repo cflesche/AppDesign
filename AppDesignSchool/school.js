@@ -23,10 +23,17 @@ function addEnrollment( req, res )
     var sql_cmd = "INSERT INTO ENROLLMENTS ('CLASSID','STUDENTID') VALUES ('"+
          inputs.classid+"' , '"+
          inputs.studentid+"')";
+    if(inputs.classid != 1 && inputs.classid != 2 && inputs.classid != 3){
+      db.close();
+      res.writeHead( 200 );
+      res.end( "<html><body>Invaild Class ID</body></html>" );
+    }
+    else{
     db.run( sql_cmd );
     db.close();
     res.writeHead( 200 );
     res.end( "<html><body>Added!!!</body></html>" );
+  }
 }
 
 function addStudent( req, res )
