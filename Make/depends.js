@@ -5,10 +5,19 @@ var fs = require( "fs" );
 /* What if the user doesn't type the right number of arguments? */
 
 var args = process.argv;
+if(args.length < 4){
+  console.log("File Input and Target Required");
+  process.exit(1);
+}
 
 /* What if the file doesn't exist? */
-var lines = fs.readFileSync( args[2] ).toString().split( "\n" );
-
+try{
+  var lines = fs.readFileSync( args[2] ).toString().split( "\n" );
+}
+catch(e){
+  console.log("Error, something bad happened trying to open "+ args[2]);
+  process.exit(1);
+}
 var targets = {}
 
 for( var i = 0; i < lines.length; i++ )
@@ -35,23 +44,23 @@ console.log( targets );
 
 function trace_dependencies( prev, target )
 {
-    /* what if prev and target are not the right kind of thing? */
+    /* what if prev and target are not the right kind of thing?
     if( !( ( typeof prev ) == "string" ) )
     {
-        /* ... */
+         ...
     }
     if( visited in target )
     {
-        /* ... */
+         ...
     }
-    /* ... */
+     ...
 
     if( target.visited )
     {
         // console.log( "Already visited "+target.name );
         return;
     }
-    /* "else" */
+     "else" */
 
     target.visited = true;
     console.log( "> " + prev + " depends on " + target.name );
