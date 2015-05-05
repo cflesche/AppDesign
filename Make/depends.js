@@ -18,7 +18,7 @@ catch(e){
   console.log("Error, something bad happened trying to open "+ args[2]);
   process.exit(1);
 }
-var targets = {}
+var targets = {};
 
 for( var i = 0; i < lines.length; i++ )
 {
