@@ -58,7 +58,7 @@ function addUserName( req, res )
     var username = usernames[0].split( "=" )[1];
     var db = new sqlite.Database( "charaterTest.sqlite" );
 
-    db.run( "INSERT INTO TEST ('Username') VALUES ('"+username +"')",
+    db.run( "INSERT INTO TEST ('Username') VALUE ('"+username +"')",
         function( err ) {
             if( err !== null )
             {
@@ -82,15 +82,15 @@ function doTheServer( req, res )
     }*/
      if( req.url.substring( 0, 5 ) == "/add?" )
     {
-        addUserName( req, res )
+        addUserName( req, res );
     }
     else if( req.url == "/characterTest_client.js" )
     {
-        giveBackFile( "characterTest_client.js", res )
+        giveBackFile( "characterTest_client.js", res );
     }
     else
     {
-        giveBackFile( "characterTest.html", res )
+        giveBackFile( "characterTest.html", res );
     }
 }
 
