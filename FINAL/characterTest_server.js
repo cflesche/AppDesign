@@ -52,13 +52,11 @@ function sendBackTable( res )
     );
 }
 
-function add( req, res )
+function addUserName( req, res )
 {
-    var addr_and_nick = req.url.split( "?" )[1];
-    var addr_and_nick_arr = addr_and_nick.split( "&" );
-    var addr = addr_and_nick_arr[0].split( "=" )[1];
-    var nick = addr_and_nick_arr[1].split( "=" )[1];
-    var db = new sqlite.Database( "linkdb.sqlite" );
+    var usernames = req.url.split( "?" )[1];
+    var username = usernames[0].split( "=" )[1];
+    var db = new sqlite.Database( "charaterTest.sqlite" );
 
     db.run( "INSERT INTO Links ('Link','Nick') VALUES ('"+
             addr +"', '"+nick+"')",
@@ -79,21 +77,21 @@ function add( req, res )
 function doTheServer( req, res )
 {
     // console.log( "doTheServer " + req.url );
-    if( req.url == "/get_table_contents" )
+   /* if( req.url == "/get_table_contents" )
     {
         sendBackTable( res );
-    }
-    else if( req.url.substring( 0, 5 ) == "/add?" )
+    }*/
+     if( req.url.substring( 0, 5 ) == "/add?" )
     {
-        add( req, res )
+        addUserName( req, res )
     }
-    else if( req.url == "/linkdb_client.js" )
+    else if( req.url == "/characterTest_client.js" )
     {
-        giveBackFile( "linkdb_client.js", res )
+        giveBackFile( "characterTest_client.js", res )
     }
     else
     {
-        giveBackFile( "linkdb.html", res )
+        giveBackFile( "characterTest.html", res )
     }
 }
 
