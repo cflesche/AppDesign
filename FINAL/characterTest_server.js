@@ -58,8 +58,7 @@ function addUserName( req, res )
     var username = usernames[0].split( "=" )[1];
     var db = new sqlite.Database( "charaterTest.sqlite" );
 
-    db.run( "INSERT INTO Links ('Link','Nick') VALUES ('"+
-            addr +"', '"+nick+"')",
+    db.run( "INSERT INTO TEST ('Username') VALUES ('"+username +"')",
         function( err ) {
             if( err !== null )
             {
