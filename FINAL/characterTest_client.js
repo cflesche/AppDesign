@@ -61,6 +61,7 @@ function add()
     var name_sender = new XMLHttpRequest();
     var url = "/add?";
     url += "username=" + user_elem.value;
+    console.log(url);
     add_sender.open( "get", url );
     add_sender.onload = addDone;
     add_sender.send();

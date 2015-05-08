@@ -54,10 +54,11 @@ function sendBackTable( res )
 
 function addUserName( req, res )
 {
+    console.log("addUserName");
     var usernames = req.url.split( "?" )[1];
     var username = usernames[0].split( "=" )[1];
     var db = new sqlite.Database( "charaterTest.sqlite" );
-
+    console.log(username);
     db.run( "INSERT INTO TEST ('Username') VALUE ('"+username +"')",
         function( err ) {
             if( err !== null )
