@@ -23,7 +23,7 @@ function giveBackFile( name, res )
 function sendBackTable( res )
 {
     console.log( "sendBackTable" );
-    var db = new sqlite.Database( "linkdb.sqlite" );
+    var db = new sqlite.Database( "characterTest.sqlite" );
     var rows = null;
     db.all( "SELECT * FROM Links",
         function( err, r ) {
@@ -54,12 +54,11 @@ function sendBackTable( res )
 
 function addUserName( req, res )
 {
-    console.log("addUserName");
+
     var usernames = req.url.split( "?" )[1];
-    var username = usernames[0].split( "=" )[1];
-    var db = new sqlite.Database( "charaterTest.sqlite" );
-    console.log(username);
-    db.run( "INSERT INTO TEST ('Username') VALUE ('"+username +"')",
+    var username = usernames.split( "=" )[1];
+    var db = new sqlite.Database( "characterTest.sqlite" );
+    db.run( "INSERT INTO TEST ('Username') VALUES ('"+username +"')",
         function( err ) {
             if( err !== null )
             {

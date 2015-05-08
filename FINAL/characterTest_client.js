@@ -54,7 +54,7 @@ function addDone()
     fillInTable();
 }
 
-function add()
+function addUserName()
 {
     var user_elem =
         document.getElementById( "username" );
@@ -62,8 +62,8 @@ function add()
     var url = "/add?";
     url += "username=" + user_elem.value;
     console.log(url);
-    add_sender.open( "get", url );
-    add_sender.onload = addDone;
-    add_sender.send();
+    name_sender.open( "get", url );
+    //name_sender.onload = addDone;
+    name_sender.send();
     // add to HTML table
 }
