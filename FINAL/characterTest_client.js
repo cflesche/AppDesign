@@ -59,7 +59,7 @@ function add()
     var user_elem =
         document.getElementById( "username" );
     var name_sender = new XMLHttpRequest();
-    var url = "add?";
+    var url = "/add?";
     url += "username=" + user_elem.value;
     add_sender.open( "get", url );
     add_sender.onload = addDone;
