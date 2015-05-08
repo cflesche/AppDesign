@@ -1,7 +1,4 @@
-function dawnOfTime()
-{
-    fillInTable()
-}
+
 
 function fillInTable()
 {
