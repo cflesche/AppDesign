@@ -56,14 +56,11 @@ function addDone()
 
 function add()
 {
-    var addr_elem =
-        document.getElementById( "addr" );
-    var nick_elem =
-        document.getElementById( "nick" );
-    var add_sender = new XMLHttpRequest();
+    var user_elem =
+        document.getElementById( "username" );
+    var name_sender = new XMLHttpRequest();
     var url = "add?";
-    url += "addr=" + addr_elem.value;
-    url += "&nick=" + nick_elem.value;
+    url += "username=" + user_elem.value;
     add_sender.open( "get", url );
     add_sender.onload = addDone;
     add_sender.send();
