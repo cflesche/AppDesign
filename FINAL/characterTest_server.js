@@ -55,7 +55,6 @@ function sendBackTable( res )
 
 function addUserName( req, res )
 {
-
     var usernames = req.url.split( "?" )[1];
     var username = usernames.split( "=" )[1];
     var db = new sqlite.Database( "characterTest.sqlite" );
@@ -74,6 +73,23 @@ function addUserName( req, res )
         } );
 }
 
+function addResults(req, res){
+
+    var results = req.url.split("=")[1];
+    var indv_result = results.split("&");
+    db.run("INSERT INTO TEST ('Choice1', 'Choice2', 'Choice3', 'Choice4', 'Choice5')
+      VALUES ('"+indv_result[0] +"', '"+indv_result[1] +"' ,'"+indv_result[2] +"' ,
+      '"+indv_result[3] +"' ,'"+indv_result[4]+"')",
+        function(err){
+
+        });
+    db.close(
+        function() {
+                res.writeHead( 200 );
+                res.end( "" );
+            } );
+}
+
 function doTheServer( req, res )
 {
 
@@ -83,7 +99,7 @@ function doTheServer( req, res )
     }
     else if( req.url.substring(0, 12) == "/getResults?" )
     {
-        //..
+        addResults(req, res);
     }
     else if( req.url == "/characterTest_client.js" )
     {
