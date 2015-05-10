@@ -67,3 +67,11 @@ function addUserName()
     name_sender.send();
     // add to HTML table
 }
+
+function getResults()
+{
+  var answer_elem =
+    document.querySelector('input[name="q1"]:checked').value;
+    console.log(answer_elem);
+
+}

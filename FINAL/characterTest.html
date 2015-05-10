@@ -4,13 +4,55 @@
 <title>Character Test</title>
 </head>
 <body onload="fillInTable()">
-<div>Welcome to the Test</div>
+<div>Are You A Computer Geek?</div>
 <script src="characterTest_client.js">
 </script>
 <form>
 <input id="username" type="text" value="Enter Your Username">
-<input type="button" value="Add" onclick="addUserName()">
-<input type="button" value="Start Test" id="start" onclick="firstpage()">
+<input type="button" value="Submit Username" onclick="addUserName()">
+<br>
+<div>Question 1:  </div>
+<input type="radio" name="q1" value="A" checked>A
+<br>
+<input type="radio" name="q1" value="B">B
+<br>
+<input type="radio" name="q1" value="C">C
+<br>
+<input type="radio" name="q1" value="D">D
+<div>Question 2:  </div>
+<input type="radio" name="q2" value="A" checked>A
+<br>
+<input type="radio" name="q2" value="B">B
+<br>
+<input type="radio" name="q2" value="C">C
+<br>
+<input type="radio" name="q2" value="D">D
+<div>Question 3:  </div>
+<input type="radio" name="q3" value="A" checked>A
+<br>
+<input type="radio" name="q3" value="B">B
+<br>
+<input type="radio" name="q3" value="C">C
+<br>
+<input type="radio" name="q3" value="D">D
+<div>Question 4:  </div>
+<input type="radio" name="q4" value="A" checked>A
+<br>
+<input type="radio" name="q4" value="B">B
+<br>
+<input type="radio" name="q4" value="C">C
+<br>
+<input type="radio" name="q4" value="D">D
+<div>Question 5:  </div>
+<input type="radio" name="q5" value="A" checked>A
+<br>
+<input type="radio" name="q5" value="B">B
+<br>
+<input type="radio" name="q5" value="C">C
+<br>
+<input type="radio" name="q5" value="D">D
+<br>
+<input type="button" value="Get Results" id="start" onclick="getResults()">
 </form>
 </body>
 </html>
