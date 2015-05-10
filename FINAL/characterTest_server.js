@@ -75,14 +75,14 @@ function addUserName( req, res )
 
 function doTheServer( req, res )
 {
-    // console.log( "doTheServer " + req.url );
-   /* if( req.url == "/get_table_contents" )
-    {
-        sendBackTable( res );
-    }*/
+
      if( req.url.substring( 0, 5 ) == "/add?" )
     {
         addUserName( req, res );
+    }
+    else if( req.url.substring(0, 12) == "/getResults?" )
+    {
+        //..
     }
     else if( req.url == "/characterTest_client.js" )
     {

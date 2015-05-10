@@ -65,13 +65,26 @@ function addUserName()
     name_sender.open( "get", url );
     //name_sender.onload = addDone;
     name_sender.send();
-    // add to HTML table
+
 }
 
 function getResults()
 {
-  var answer_elem =
+  var answer1_elem =
     document.querySelector('input[name="q1"]:checked').value;
-    console.log(answer_elem);
+  var answer2_elem =
+    document.querySelector('input[name="q2"]:checked').value;
+  var answer3_elem =
+    document.querySelector('input[name="q3"]:checked').value;
+  var answer4_elem =
+    document.querySelector('input[name="q4"]:checked').value;
+  var answer5_elem =
+    document.querySelector('input[name="q5"]:checked').value;
 
+  var results_sender = new XMLHttpRequest();
+  var url = "/getResults?";
+  for(var i=0; i<5; i++){
+      console.log(answer[i]_elem);
+      url += i+"="+ answer[i]_elem;
+    }
 }
