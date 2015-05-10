@@ -19,7 +19,7 @@ function giveBackFile( name, res )
     res.writeHead( 200 );
     res.end( contents );
 }
-
+/*
 function sendBackTable( res )
 {
     console.log( "sendBackTable" );
@@ -51,6 +51,7 @@ function sendBackTable( res )
         }
     );
 }
+*/
 
 function addUserName( req, res )
 {
@@ -76,7 +77,7 @@ function addUserName( req, res )
 function doTheServer( req, res )
 {
 
-     if( req.url.substring( 0, 5 ) == "/add?" )
+    if( req.url.substring( 0, 5 ) == "/add?" )
     {
         addUserName( req, res );
     }

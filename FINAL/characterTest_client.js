@@ -1,5 +1,4 @@
-
-
+/*
 function fillInTable()
 {
     var value_req = new XMLHttpRequest();
@@ -52,7 +51,7 @@ function addDone()
     var table_elem = document.getElementById( "the_table" );
     removeAllChildren( table_elem );
     fillInTable();
-}
+} */
 
 function addUserName()
 {
@@ -68,23 +67,25 @@ function addUserName()
 
 }
 
-function getResults()
+function getAnswers()
 {
-  var answer1_elem =
+  var answer_elem1 =
     document.querySelector('input[name="q1"]:checked').value;
-  var answer2_elem =
+  var answer_elem2 =
     document.querySelector('input[name="q2"]:checked').value;
-  var answer3_elem =
+  var answer_elem3 =
     document.querySelector('input[name="q3"]:checked').value;
-  var answer4_elem =
+  var answer_elem4 =
     document.querySelector('input[name="q4"]:checked').value;
-  var answer5_elem =
+  var answer_elem5 =
     document.querySelector('input[name="q5"]:checked').value;
+
 
   var results_sender = new XMLHttpRequest();
   var url = "/getResults?";
-  for(var i=0; i<5; i++){
-      console.log(answer[i]_elem);
-      url += i+"="+ answer[i]_elem;
-    }
+      url += "="+ answer_elem1+"&"+answer_elem2+"&"+answer_elem3
+      +"&"+answer_elem4+"&"+answer_elem5;
+  console.log(url);
+  results_sender.open("get", url);
+  results_sender.send();
 }
