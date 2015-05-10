@@ -75,11 +75,13 @@ function addUserName( req, res )
 
 function addResults(req, res){
 
-    var results = req.url.split("=")[1];
-    var indv_result = results.split("&");
-    db.run("INSERT INTO TEST ('Choice1', 'Choice2', 'Choice3', 'Choice4', 'Choice5')
-      VALUES ('"+indv_result[0] +"', '"+indv_result[1] +"' ,'"+indv_result[2] +"' ,
-      '"+indv_result[3] +"' ,'"+indv_result[4]+"')",
+    var results = req.url.toString().split("=")[1];
+    var indv_result = results.toString().split("&");
+    console.log(indv_result);
+    var db = new sqlite.Database( "characterTest.sqlite" );
+    db.run("INSERT INTO TEST ('Choice1' , 'Choice2' , 'Choice3' , 'Choice4' ,
+        'Choice5') VALUES ('"+indv_result[0] +"', '"+indv_result[1] +"' ,
+        '"+indv_result[2] +"' , '"+indv_result[3] +"' ,'"+indv_result[4]+"')",
         function(err){
 
         });
