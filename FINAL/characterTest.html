@@ -2,9 +2,13 @@
 <html>
 <head>
 <title>Character Test</title>
+<link rel="stylesheet" type="text/css" href="characterTest.css">
 </head>
 <body>
-<div>Are You A Computer Geek?</div>
+<div id="rotate">
+<img src="skull.jpg" alt=""/>
+Are You A Computer Geek?
+</div>
 <script src="characterTest_client.js">
 </script>
 <form>
@@ -13,31 +17,39 @@
 </form>
 <form>
 <br>
-<div>Question 1:  </div>
-<input type="radio" name="q1" value="A" checked>A
-<br>
-<input type="radio" name="q1" value="B">B
-<br>
-<input type="radio" name="q1" value="C">C
-<br>
-<input type="radio" name="q1" value="D">D
-<div>Question 2:  </div>
-<input type="radio" name="q2" value="A" checked>A
-<br>
-<input type="radio" name="q2" value="B">B
-<br>
-<input type="radio" name="q2" value="C">C
-<br>
-<input type="radio" name="q2" value="D">D
-<div>Question 3:  </div>
-<input type="radio" name="q3" value="A" checked>A
-<br>
-<input type="radio" name="q3" value="B">B
-<br>
-<input type="radio" name="q3" value="C">C
-<br>
-<input type="radio" name="q3" value="D">D
-<div>Question 4:  </div>
+<div id="css1">
+	<div>Question 1: </div>
+	<input type="radio" name="q1" value="A" checked>A
+	<br>
+	<input type="radio" name="q1" value="B">B
+	<br>
+	<input type="radio" name="q1" value="C">C
+	<br>
+	<input type="radio" name="q1" value="D">D
+</div>
+<div id="css1">
+
+	<div>Question 2: </div>
+	<input type="radio" name="q2" value="A" checked>A
+	<br>
+	<input type="radio" name="q2" value="B">B
+	<br>
+	<input type="radio" name="q2" value="C">C
+	<br>
+	<input type="radio" name="q2" value="D">D
+</div>
+<div id="css1">
+	<div>Question 3: </div>
+	<input type="radio" name="q3" value="A" checked>A
+	<br>
+	<input type="radio" name="q3" value="B">B
+	<br>
+	<input type="radio" name="q3" value="C">C
+	<br>
+	<input type="radio" name="q3" value="D">D
+</div>
+<div id="css1">
+<div>Question 4: </div>
 <input type="radio" name="q4" value="A" checked>A
 <br>
 <input type="radio" name="q4" value="B">B
@@ -45,7 +57,9 @@
 <input type="radio" name="q4" value="C">C
 <br>
 <input type="radio" name="q4" value="D">D
-<div>Question 5:  </div>
+</div>
+<div id="css1">
+<div>Question 5: </div>
 <input type="radio" name="q5" value="A" checked>A
 <br>
 <input type="radio" name="q5" value="B">B
@@ -54,9 +68,9 @@
 <br>
 <input type="radio" name="q5" value="D">D
 <br>
+</div>
 </form>
 <form>
 <input type="button" value="Get Results" onclick="getAnswers()">
 </form>
 </body>
-</html>
