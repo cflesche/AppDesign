@@ -79,11 +79,9 @@ function addResults(req, res){
     var indv_result = results.toString().split("&");
     console.log(indv_result);
     var db = new sqlite.Database( "characterTest.sqlite" );
-    db.run("INSERT INTO TEST ('Choice1' , 'Choice2' , 'Choice3' , 'Choice4' ,
-        'Choice5') VALUES ('"+indv_result[0] +"', '"+indv_result[1] +"' ,
-        '"+indv_result[2] +"' , '"+indv_result[3] +"' ,'"+indv_result[4]+"')",
+    db.run("INSERT INTO TEST ('Choice1' , 'Choice2' , 'Choice3' , 'Choice4' ,'Choice5') VALUES ('"+indv_result[0] +"', '"+indv_result[1] +"' ,'"+indv_result[2] +"' , '"+indv_result[3] +"' ,'"+indv_result[4]+"')",
         function(err){
-
+            console.log("Can't insert to database");
         });
     db.close(
         function() {
