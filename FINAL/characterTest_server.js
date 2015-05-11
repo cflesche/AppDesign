@@ -53,35 +53,24 @@ function sendBackTable( res )
 }
 */
 
-function addUserName( req, res )
-{
-    var usernames = req.url.split( "?" )[1];
-    var username = usernames.split( "=" )[1];
-    var db = new sqlite.Database( "characterTest.sqlite" );
-    db.run( "INSERT INTO TEST ('Username') VALUES ('"+username +"')",
-        function( err ) {
-            if( err !== null )
-            {
-                console.log( "Error in add" );
-                console.log( err );
-            }
-        } );
-    db.close(
-        function() {
-            res.writeHead( 200 );
-            res.end( "" );
-        } );
-}
+
 
 function addResults(req, res){
 
     var results = req.url.toString().split("=")[1];
-    var indv_result = results.toString().split("&");
+    var username = results.split("/");
+    var results2 = results.toString().split("?")[1];
+    var indv_result = results2.split("&");
+    var matchString = indv_result[0]+indv_result[1]+indv_result[2]+indv_result[3]+indv_result[4];
     console.log(indv_result);
     var db = new sqlite.Database( "characterTest.sqlite" );
-    db.run("INSERT INTO TEST ('Choice1' , 'Choice2' , 'Choice3' , 'Choice4' ,'Choice5') VALUES ('"+indv_result[0] +"', '"+indv_result[1] +"' ,'"+indv_result[2] +"' , '"+indv_result[3] +"' ,'"+indv_result[4]+"')",
+    db.run("INSERT INTO TEST ('Username' , 'Choice1' , 'Choice2' , 'Choice3' , 'Choice4' ,'Choice5', 'Result') VALUES ('"+username[0]+"','"+indv_result[0] +"', '"+indv_result[1] +"' ,'"+indv_result[2] +"' , '"+indv_result[3] +"' ,'"+indv_result[4]+"', '"+matchString+"') ",
         function(err){
-            console.log("Can't insert to database");
+          if( err !== null )
+          {
+              console.log( "Can't insert to database" );
+              console.log( err );
+          }
         });
     db.close(
         function() {
@@ -95,11 +84,7 @@ function doTheServer( req, res )
 
     if( req.url.substring( 0, 5 ) == "/add?" )
     {
-        addUserName( req, res );
-    }
-    else if( req.url.substring(0, 12) == "/getResults?" )
-    {
-        addResults(req, res);
+        addResults( req, res );
     }
     else if( req.url == "/characterTest_client.js" )
     {

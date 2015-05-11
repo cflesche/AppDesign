@@ -53,19 +53,6 @@ function addDone()
     fillInTable();
 } */
 
-function addUserName()
-{
-    var user_elem =
-        document.getElementById( "username" );
-    var name_sender = new XMLHttpRequest();
-    var url = "/add?";
-    url += "username=" + user_elem.value;
-    console.log(url);
-    name_sender.open( "get", url );
-    //name_sender.onload = addDone;
-    name_sender.send();
-
-}
 
 function addResults()
 {
@@ -93,11 +80,15 @@ function getAnswers()
     document.querySelector('input[name="q4"]:checked').value;
   var answer_elem5 =
     document.querySelector('input[name="q5"]:checked').value;
+  var user_elem =
+    document.getElementById( "username" );
 
 
   var results_sender = new XMLHttpRequest();
-  var url = "/getResults?";
-      url += "="+ answer_elem1+"&"+answer_elem2+"&"+answer_elem3
+  var url = "/add?";
+  url += "username=" + user_elem.value;
+  url += "/getResults?";
+  url += answer_elem1+"&"+answer_elem2+"&"+answer_elem3
       +"&"+answer_elem4+"&"+answer_elem5;
   console.log(url);
   results_sender.open("get", url);
