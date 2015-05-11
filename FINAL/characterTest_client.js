@@ -94,3 +94,15 @@ function getAnswers()
   results_sender.open("get", url);
   results_sender.send();
 }
+
+function getResults(){
+    var info_request = new XMLHttpRequest();
+    info_request.onload = showResults;
+    info_request.open("get", "getMatch")
+    info_request.send();
+}
+
+function showResults(){
+  var matches = JSON.parse(this.responseText);
+  var url = "/finalPage?";
+}

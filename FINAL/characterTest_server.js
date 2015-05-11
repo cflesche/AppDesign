@@ -19,41 +19,23 @@ function giveBackFile( name, res )
     res.writeHead( 200 );
     res.end( contents );
 }
-/*
-function sendBackTable( res )
+function giveBackImage( name, res )
 {
-    console.log( "sendBackTable" );
-    var db = new sqlite.Database( "characterTest.sqlite" );
-    var rows = null;
-    db.all( "SELECT * FROM Links",
-        function( err, r ) {
-            if( err === null )
-            {
-                rows = r;
-            }
-            else
-            {
-                console.log( "Error in sendBackTable" );
-                console.log( err );
-            }
-        } );
-    db.close(
-        function() {
-            res.writeHead( 200 );
-            if( rows === null )
-            {
-                res.end( JSON.stringify( rows ) );
-            }
-            else
-            {
-                res.end( "Uh oh" );
-            }
-        }
-    );
+    var contents = "";
+    try {
+    	contents = fs.readFileSync( name );
+    }
+    catch( e ) {
+    	console.log(
+    	    "Error: Something bad happened trying to open "+name );
+        res.writeHead( 404 );
+        res.end( "" );
+        return;
+    }
+
+    res.writeHead( 200 );
+    res.end( contents );
 }
-*/
-
-
 
 function addResults(req, res){
 
@@ -79,9 +61,37 @@ function addResults(req, res){
             } );
 }
 
+function getMatch(res){
+    var db = new sqlite.Database("characterTest.sqlite");
+    var list = [];
+    var usernames = [];
+    db.each("SELECT Result, Username FROM TEST",
+          function(err, row){
+              list.push(row.Result);
+              usernames.push(row.Username);
+          }  );
+    db.close(
+    function(){
+    res.writeHead(200);
+    var theMatch = "";
+    for(var i=0;i<list.length-1;i++){
+      if(list[i]==list[list.length-1]){
+        theMatch += " "+usernames[i];
+
+      }
+    }
+    if(theMatch == null){
+      res.end("");
+    }
+    else{
+      res.end(JSON.stringify(theMatch));
+    }
+  }
+);
+}
+
 function doTheServer( req, res )
 {
-
     if( req.url.substring( 0, 5 ) == "/add?" )
     {
         addResults( req, res );
@@ -89,6 +99,14 @@ function doTheServer( req, res )
     else if( req.url == "/characterTest_client.js" )
     {
         giveBackFile( "characterTest_client.js", res );
+    }
+    else if (req.url == "/characterTest.css")
+    {
+      giveBackFile("characterTest.css", res );
+    }
+    else if (req.url == "/getMatch")
+    {
+      getMatch( res );
     }
     else
     {
