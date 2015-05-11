@@ -67,6 +67,20 @@ function addUserName()
 
 }
 
+function addResults()
+{
+    var result_elem =
+        document.getElementById( "results" );
+    var results_sender = new XMLHttpRequest();
+    var results = "/results?";
+    results += "results=" + result_elem.value;
+    console.log(results);
+    name_sender.open( "get", results );
+    //name_sender.onload = addDone;
+    name_sender.send();
+
+}
+
 function getAnswers()
 {
   var answer_elem1 =
